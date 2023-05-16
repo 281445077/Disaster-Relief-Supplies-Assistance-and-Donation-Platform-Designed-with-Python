@@ -1,0 +1,89 @@
+{% load utils %} {% include "head.html" %} {% include "header.html" %}
+
+<div>
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <form action="?" class="search" style="margin: 20px 0 0 0; background-color: #FFFFFF">
+            <table class="jd-search">
+                <tbody>
+                    <tr>
+                        <td class="label1">物质类别</td>
+                        <td class="form-inline">
+                            <p class="search-radio">
+                                <input type="hidden" name="wuzhileibie" value="{{ request.GET.wuzhileibie }}" />
+                                <a href="javascript:;" data-value="" onclick="selectRadio(this)">全部</a>
+                                {% sql "SELECT id,leibieming FROM wupinleibie" 'select' as mapwupinleibie3 %} {% for r in mapwupinleibie3 %}
+                                <a href="javascript:;" data-value="{{ r.id }}" onclick="selectRadio(this)">{{ r.leibieming }}</a>
+                                {% endfor %}
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label1">标题</td>
+                        <td class="form-inline">
+                            <input type="text" class="form-control" style="width: 150px" name="biaoti" value="{{ request.GET.biaoti }}" placeholder="请输入关键词" />
+                            <button type="submit" class="btn btn-default">搜索</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="label1">物质名称</td>
+                        <td class="form-inline">
+                            <input
+                                type="text"
+                                class="form-control"
+                                style="width: 150px"
+                                name="wuzhimingcheng"
+                                value="{{ request.GET.wuzhimingcheng }}"
+                                placeholder="请输入关键词"
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <div class="list-table" style="background-color: #FFFFFF">
+            <table width="100%" border="1" class="table table-list table-bordered table-hover">
+                <thead>
+                    <tr align="center">
+                        <th>标题</th>
+                        <th>物质名称</th>
+                        <th>物质类别</th>
+                        <th>数量</th>
+                        <th>姓名</th>
+                        <th>状态</th>
+                        <th>添加时间</th>
+
+                        <th width="80" align="center" bgcolor="CCFFFF">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in list %} {% with i=forloop.counter %}
+                    <tr>
+                        <td>{{ r.biaoti }}</td>
+                        <td>{{ r.wuzhimingcheng }}</td>
+                        <td>{{ r.wuzhileibie.leibieming }}</td>
+                        <td>{{ r.shuliang }}</td>
+                        <td>{{ r.xingming }}</td>
+                        <td>{{ r.zhuangtai }}</td>
+                        <td>{{ r.addtime|date:'Y-m-d H:i:s' }}</td>
+
+                        <td align="center">
+                            <a href="/xuqiuxinxi/detail/?id={{ r.id }}"> 详细 </a>
+                        </td>
+                    </tr>
+                    {% endwith %}{% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% include "page.html" %}
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+</div>
+
+{% include "footer.html" %} {% include "foot.html" %}

@@ -1,0 +1,216 @@
+{% load utils %} {% include "head.html" %}
+<script src="/static/js/jquery.validate.js"></script>
+
+<div style="padding: 10px" class="admin-content">
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">编辑捐赠物资:</div>
+            <div class="panel-body">
+                <form action="/juanzengwuzi/update/" method="post" name="form1" id="form1">
+                    <!-- form 标签开始 -->
+
+                    <input type="hidden" name="xuqiuxinxiid" value="{{ mmm.xuqiuxinxiid_id }}" />
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">需求编号</label>
+                            <div class="col-sm-10">{{ mmm.xuqiubianhao }}<input type="hidden" id="xuqiubianhao" name="xuqiubianhao" value="{{ mmm.xuqiubianhao }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">标题</label>
+                            <div class="col-sm-10">{{ mmm.biaoti }}<input type="hidden" id="biaoti" name="biaoti" value="{{ mmm.biaoti }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物质名称</label>
+                            <div class="col-sm-10">{{ mmm.wuzhimingcheng }}<input type="hidden" id="wuzhimingcheng" name="wuzhimingcheng" value="{{ mmm.wuzhimingcheng }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物质类别</label>
+                            <div class="col-sm-10">
+                                {{ mmm.wuzhileibie.leibieming }}<input type="hidden" id="wuzhileibie" name="wuzhileibie" value="{{ mmm.wuzhileibie.id }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">数量</label>
+                            <div class="col-sm-10">{{ mmm.shuliang }}<input type="hidden" id="shuliang" name="shuliang" value="{{ mmm.shuliang }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">姓名</label>
+                            <div class="col-sm-10">{{ mmm.xingming }}<input type="hidden" id="xingming" name="xingming" value="{{ mmm.xingming }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">手机号</label>
+                            <div class="col-sm-10">{{ mmm.shoujihao }}<input type="hidden" id="shoujihao" name="shoujihao" value="{{ mmm.shoujihao }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">联系地址</label>
+                            <div class="col-sm-10">{{ mmm.lianxidizhi }}<input type="hidden" id="lianxidizhi" name="lianxidizhi" value="{{ mmm.lianxidizhi }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">登记人</label>
+                            <div class="col-sm-10">{{ mmm.dengjiren }}<input type="hidden" id="dengjiren" name="dengjiren" value="{{ mmm.dengjiren }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠物质<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入捐赠物质"
+                                    style="width: 250px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写捐赠物质"
+                                    id="juanzengwuzhi"
+                                    name="juanzengwuzhi"
+                                    value="{{ mmm.juanzengwuzhi }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠数量<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入捐赠数量"
+                                    style="width: 150px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写捐赠数量"
+                                    id="juanzengshuliang"
+                                    name="juanzengshuliang"
+                                    value="{{ mmm.juanzengshuliang }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">快递公司<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入快递公司"
+                                    style="width: 150px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写快递公司"
+                                    id="kuaidigongsi"
+                                    name="kuaidigongsi"
+                                    value="{{ mmm.kuaidigongsi }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">快递单号<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入快递单号"
+                                    style="width: 150px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写快递单号"
+                                    remote="/common/checkno/?checktype=update&id={{ mmm.id }}&table=juanzengwuzi&col=kuaididanhao"
+                                    data-msg-remote="内容重复了"
+                                    id="kuaididanhao"
+                                    name="kuaididanhao"
+                                    value="{{ mmm.kuaididanhao }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠备注</label>
+                            <div class="col-sm-10">
+                                <textarea style="width: 80%; height: 120px" class="form-control" placeholder="输入捐赠备注" id="juanzengbeizhu" name="juanzengbeizhu">
+{{ mmm.juanzengbeizhu }}</textarea
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠人昵称</label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入捐赠人昵称"
+                                    style="width: 150px"
+                                    id="juanzengrennicheng"
+                                    name="juanzengrennicheng"
+                                    value="{{ mmm.juanzengrennicheng }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠用户</label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入捐赠用户"
+                                    style="width: 150px"
+                                    readonly="readonly"
+                                    id="juanzengyonghu"
+                                    name="juanzengyonghu"
+                                    value="{{ mmm.juanzengyonghu }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs"> </label>
+                            <div class="col-sm-10">
+                                <input name="id" value="{{ mmm.id }}" type="hidden" />
+                                <input name="referer" value="{{ request.headers.referer }}" type="hidden" />
+                                <input name="updtself" value="{{ updtself }}" type="hidden" />
+
+                                <button type="submit" class="btn btn-primary" name="Submit">提交</button>
+                                <button type="reset" class="btn btn-default" name="Submit2">重置</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+        </div>
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+
+    <script>
+        $(function () {
+            $("#form1").validate();
+        });
+    </script>
+</div>
+{% include "foot.html" %}

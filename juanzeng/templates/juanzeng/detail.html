@@ -1,0 +1,92 @@
+{% load utils %} {% include "head.html" %} {% include "header.html" %}
+<link rel="stylesheet" href="/static/js/swiper/swiper.css"/>
+<script src="/static/js/swiper/swiper.js"></script>
+<script src="/static/js/jquery.validate.js"></script>
+
+<div>
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <div class="" style="margin: 20px 0 0 0; background-color: #FFFFFF">
+            <div class="goods-info clearfix">
+                <div class="gallery-list">
+                    <div class="swiper-container gallery-top" id="shangpin-galler">
+                        <div class="swiper-wrapper"></div>
+                    </div>
+                    <div class="swiper-container gallery-thumbs" id="shangpin-thumb">
+                        <div class="swiper-wrapper"></div>
+                    </div>
+                </div>
+                <div class="goods-right-content">
+                    <h3 class="title">{{ map.biaoti }}</h3>
+                    <div class="descount">
+                        <div>
+                            <span class="name"> 编号： </span>
+                            <span class="val"> {{ map.bianhao }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 物品： </span>
+                            <span class="val"> {{ map.wupin }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 物品类别： </span>
+                            <span class="val"> {{ map.wupinleibie.leibieming }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 数量： </span>
+                            <span class="val"> {{ map.shuliang }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 状态： </span>
+                            <span class="val"> {{ map.zhuangtai }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 捐赠人： </span>
+                            <span class="val"> {{ map.juanzengren }} </span>
+                        </div>
+                        <div>
+                            <span class="name"> 添加时间： </span>
+                            <span class="val"> {{ map.addtime|date:'Y-m-d H:i:s' }} </span>
+
+                        </div>
+
+
+                        <a style="color: white" class="btn btn-info" href="/shenling/add/?id={{ map.id }}">申领</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="goods-content">{{ map.xiangqingbeizhu|safe }}</div>
+
+            <script>
+                (function () {
+                    var images = "{{ map.tupian }}".split(",");
+                    if (images.length > 0) {
+                        for (var i = 0; i < images.length; i++) {
+                            var path = images[i];
+                            var src = '<div class="swiper-slide"><div class="img-box pb100"><div class="img" style="background-image: url(' + path + ')"></div></div></div>';
+                            $("#shangpin-galler .swiper-wrapper").append(src);
+                            $("#shangpin-thumb .swiper-wrapper").append(src);
+                        }
+
+                        var thumbsSwiper = new Swiper("#shangpin-thumb", {
+                            spaceBetween: 10,
+                            slidesPerView: 4,
+                            watchSlidesVisibility: true, //防止不可点击
+                        });
+                        var gallerySwiper = new Swiper("#shangpin-galler", {
+                            spaceBetween: 10,
+                            thumbs: {
+                                swiper: thumbsSwiper,
+                            },
+                        });
+                    }
+                })();
+            </script>
+        </div>
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+</div>
+
+{% include "footer.html" %} {% include "foot.html" %}

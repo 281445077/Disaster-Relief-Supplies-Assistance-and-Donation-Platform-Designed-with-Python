@@ -1,0 +1,212 @@
+{% load utils %} {% include "head.html" %} {% include "header.html" %}
+<script src="/static/js/jquery.validate.js"></script>
+
+<div class="container">
+    <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+    <div class="panel panel-default">
+        <div class="panel-heading">添加捐赠物资:</div>
+        <div class="panel-body">
+            <form action="/juanzengwuzi/insert/" method="post" name="form1" id="form1">
+                <!-- form 标签开始 -->
+
+                <input type="hidden" name="xuqiuxinxiid" value="{{ request.GET.id }}" />
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">需求编号</label>
+                        <div class="col-sm-10">{{ readMap.xuqiubianhao }}<input type="hidden" id="xuqiubianhao" name="xuqiubianhao" value="{{ readMap.xuqiubianhao }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">标题</label>
+                        <div class="col-sm-10">{{ readMap.biaoti }}<input type="hidden" id="biaoti" name="biaoti" value="{{ readMap.biaoti }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">物质名称</label>
+                        <div class="col-sm-10">
+                            {{ readMap.wuzhimingcheng }}<input type="hidden" id="wuzhimingcheng" name="wuzhimingcheng" value="{{ readMap.wuzhimingcheng }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">物质类别</label>
+                        <div class="col-sm-10">
+                            {{ readMap.wuzhileibie.leibieming }}<input type="hidden" id="wuzhileibie" name="wuzhileibie" value="{{ readMap.wuzhileibie.id }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">数量</label>
+                        <div class="col-sm-10">{{ readMap.shuliang }}<input type="hidden" id="shuliang" name="shuliang" value="{{ readMap.shuliang }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">姓名</label>
+                        <div class="col-sm-10">{{ readMap.xingming }}<input type="hidden" id="xingming" name="xingming" value="{{ readMap.xingming }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">手机号</label>
+                        <div class="col-sm-10">{{ readMap.shoujihao }}<input type="hidden" id="shoujihao" name="shoujihao" value="{{ readMap.shoujihao }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">联系地址</label>
+                        <div class="col-sm-10">{{ readMap.lianxidizhi }}<input type="hidden" id="lianxidizhi" name="lianxidizhi" value="{{ readMap.lianxidizhi }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">登记人</label>
+                        <div class="col-sm-10">{{ readMap.dengjiren }}<input type="hidden" id="dengjiren" name="dengjiren" value="{{ readMap.dengjiren }}" /></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠物质<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="输入捐赠物质"
+                                style="width: 250px"
+                                data-rule-required="true"
+                                data-msg-required="请填写捐赠物质"
+                                id="juanzengwuzhi"
+                                name="juanzengwuzhi"
+                                value=""
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠数量<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="输入捐赠数量"
+                                style="width: 150px"
+                                data-rule-required="true"
+                                data-msg-required="请填写捐赠数量"
+                                id="juanzengshuliang"
+                                name="juanzengshuliang"
+                                value=""
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">快递公司<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="输入快递公司"
+                                style="width: 150px"
+                                data-rule-required="true"
+                                data-msg-required="请填写快递公司"
+                                id="kuaidigongsi"
+                                name="kuaidigongsi"
+                                value=""
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">快递单号<span style="color: red">*</span></label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="输入快递单号"
+                                style="width: 150px"
+                                data-rule-required="true"
+                                data-msg-required="请填写快递单号"
+                                remote="/common/checkno/?checktype=insert&table=juanzengwuzi&col=kuaididanhao"
+                                data-msg-remote="内容重复了"
+                                id="kuaididanhao"
+                                name="kuaididanhao"
+                                value=""
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠备注</label>
+                        <div class="col-sm-10">
+                            <textarea style="width: 80%; height: 120px" class="form-control" placeholder="输入捐赠备注" id="juanzengbeizhu" name="juanzengbeizhu"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠人昵称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="输入捐赠人昵称" style="width: 150px" id="juanzengrennicheng" name="juanzengrennicheng" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠用户</label>
+                        <div class="col-sm-10">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="输入捐赠用户"
+                                style="width: 150px"
+                                readonly="readonly"
+                                id="juanzengyonghu"
+                                name="juanzengyonghu"
+                                value="{{ request.session.username }}"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label style="text-align: right" class="col-sm-2 hiddex-xs"> </label>
+                        <div class="col-sm-10">
+                            <input name="referer" id="referers" class="referers" value="{{ request.headers.referer }}" type="hidden" />
+                            <script>
+                                $(function () {
+                                    $("input.referers").val(document.referrer);
+                                });
+                            </script>
+
+                            <input type="hidden" name="juanzengzhuangtai" id="juanzengzhuangtai" value="待领取" />
+
+                            <button type="submit" class="btn btn-primary" name="Submit">提交</button>
+                            <button type="reset" class="btn btn-default" name="Submit2">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--form标签结束-->
+            </form>
+        </div>
+    </div>
+
+    <!-- container定宽，并剧中结束 -->
+</div>
+
+<script>
+    $(function () {
+        $("#form1").validate();
+    });
+</script>
+
+{% include "footer.html" %} {% include "foot.html" %}

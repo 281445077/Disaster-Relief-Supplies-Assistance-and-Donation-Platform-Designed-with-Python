@@ -1,0 +1,36 @@
+{% load utils %}
+    
+    
+
+    
+
+<footer class="footer" style="margin-top: 20px">
+        <div class="footer_con">
+            <div class="con">
+                <div class="nei">
+                    <div class="div_nav">
+                                                {% query 'youqinglianjie' 'select' "order" '-id' as likeList %}
+                        <div class="links">友情链接:
+                                {% for v in likeList %}
+                                    <a href="{{ v.wangzhi }}" target="_blank">{{ v.wangzhanmingcheng }}</a>
+                                {% endfor %}
+
+                        </div>
+                                            </div>
+                    <div class="clear"></div>
+                    <div class="lian">
+                        <p>电话：xxx-xxxxxxxx</p>
+                        <p>邮箱：xxxxxxx@xx.com</p>
+                        <p>手机：1xx xxx xxx</p>
+                        <p>地址：xxxxxxxxxxxxx</p>
+                        <p>Copyright© 2022  版权所有：基于python的赈灾物资求助与捐赠平台设计与实现</p>                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+

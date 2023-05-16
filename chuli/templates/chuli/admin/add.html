@@ -1,0 +1,120 @@
+{% load utils %} {% include "head.html" %}
+<script src="/static/js/jquery.validate.js"></script>
+
+<div style="padding: 10px" class="admin-content">
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">添加处理:</div>
+            <div class="panel-body">
+                <form action="/chuli/insert/" method="post" name="form1" id="form1">
+                    <!-- form 标签开始 -->
+
+                    <input type="hidden" name="juanjiid" value="{{ request.GET.id }}" /> <input type="hidden" name="juanzengid" value="{{ readMap.juanzengid_id }}" />
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">标题</label>
+                            <div class="col-sm-10">{{ readMap.biaoti }}<input type="hidden" id="biaoti" name="biaoti" value="{{ readMap.biaoti }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">编号</label>
+                            <div class="col-sm-10">{{ readMap.bianhao }}<input type="hidden" id="bianhao" name="bianhao" value="{{ readMap.bianhao }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物品</label>
+                            <div class="col-sm-10">{{ readMap.wupin }}<input type="hidden" id="wupin" name="wupin" value="{{ readMap.wupin }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物品类别</label>
+                            <div class="col-sm-10">
+                                {{ readMap.wupinleibie.leibieming }}<input type="hidden" id="wupinleibie" name="wupinleibie" value="{{ readMap.wupinleibie.id }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">数量</label>
+                            <div class="col-sm-10">{{ readMap.shuliang }}<input type="hidden" id="shuliang" name="shuliang" value="{{ readMap.shuliang }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">捐赠人</label>
+                            <div class="col-sm-10">{{ readMap.juanzengren }}<input type="hidden" id="juanzengren" name="juanzengren" value="{{ readMap.juanzengren }}" /></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">类型</label>
+                            <div class="col-sm-10">
+                                <select class="form-control class_leixing35" data-value="" id="leixing" name="leixing" style="width: 250px">
+                                    <option value="回收处理">回收处理</option>
+                                    <option value="退还处理">退还处理</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">备注信息</label>
+                            <div class="col-sm-10">
+                                <textarea style="width: 80%; height: 120px" class="form-control" placeholder="输入备注信息" id="beizhuxinxi" name="beizhuxinxi"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">添加人</label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入添加人"
+                                    style="width: 150px"
+                                    readonly="readonly"
+                                    id="tianjiaren"
+                                    name="tianjiaren"
+                                    value="{{ request.session.username }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs"> </label>
+                            <div class="col-sm-10">
+                                <input name="referer" id="referers" class="referers" value="{{ request.headers.referer }}" type="hidden" />
+                                <script>
+                                    $(function () {
+                                        $("input.referers").val(document.referrer);
+                                    });
+                                </script>
+
+                                <button type="submit" class="btn btn-primary" name="Submit">提交</button>
+                                <button type="reset" class="btn btn-default" name="Submit2">重置</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+        </div>
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+
+    <script>
+        $(function () {
+            $("#form1").validate();
+        });
+    </script>
+</div>
+{% include "foot.html" %}

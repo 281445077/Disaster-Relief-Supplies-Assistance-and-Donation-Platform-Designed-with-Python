@@ -1,0 +1,89 @@
+{% load utils %} {% include "head.html" %}
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="module-name"> 用户 </span>
+            <span>列表</span>
+        </div>
+        <div class="panel-body">
+            <div class="pa10 bg-warning">
+                <form class="form-inline" id="formSearch" action="?">
+                    <!-- form 标签开始 -->
+
+                    <div class="form-group">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <div class="form-group">
+                        用户名
+
+                        <input type="text" class="form-control" style="" name="yonghuming" value="{{ request.GET.yonghuming }}" />
+                    </div>
+                    <select class="form-control" name="order" id="orderby">
+                        <option value="id">按发布时间</option>
+                        <option value="aixinjifen">按爱心积分</option>
+                    </select>
+                    <select class="form-control" name="sort" id="sort">
+                        <option value="desc">倒序</option>
+                        <option value="asc">升序</option>
+                    </select>
+                    <script>
+                        $("#orderby").val("{{ orderby }}");
+                        $("#sort").val("{{ sort }}");
+                    </script>
+                    <button type="submit" class="btn btn-default">搜索</button>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+
+            <div class="list-table">
+                <table width="100%" border="1" class="table table-list table-bordered table-hover">
+                    <thead>
+                        <tr align="center">
+                            <th width="60" data-field="item">序号</th>
+                            <th>用户名</th>
+                            <th>姓名</th>
+                            <th>昵称</th>
+                            <th>性别</th>
+                            <th>手机号</th>
+                            <th>邮箱</th>
+                            <th>身份证</th>
+                            <th>地址</th>
+                            <th>爱心积分</th>
+                            <th width="220" data-field="handler">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for map in list %} {% with i=forloop.counter %}
+                        <tr id="{{ map.id }}" pid="">
+                            <td width="30" align="center">
+                                <label> {{ i }} </label>
+                            </td>
+                            <td>{{ map.yonghuming }}</td>
+                            <td>{{ map.xingming }}</td>
+                            <td>{{ map.nicheng }}</td>
+                            <td>{{ map.xingbie }}</td>
+                            <td>{{ map.shoujihao }}</td>
+                            <td>{{ map.youxiang }}</td>
+                            <td>{{ map.shenfenzheng }}</td>
+                            <td>{{ map.dizhi }}</td>
+                            <td>{{ map.aixinjifen }}</td>
+                            <td align="center">
+                                <a href="/yonghu/admin/updt/?id={{ map.id }}">编辑</a>
+
+                                <a href="/yonghu/delete/?id={{ map.id }}" onclick="return confirm('确定要删除？')">删除</a>
+                                <!--qiatnalijne-->
+                            </td>
+                        </tr>
+                        {% endwith %}{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "page.html" %}
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

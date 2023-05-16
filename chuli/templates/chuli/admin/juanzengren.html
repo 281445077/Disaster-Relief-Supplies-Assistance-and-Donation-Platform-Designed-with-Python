@@ -1,0 +1,124 @@
+{% load utils %} {% include "head.html" %}
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="module-name"> 处理 </span>
+            <span>列表</span>
+        </div>
+        <div class="panel-body">
+            <div class="pa10 bg-warning">
+                <form class="form-inline" id="formSearch" action="?">
+                    <!-- form 标签开始 -->
+
+                    <div class="form-group">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <div class="form-group">
+                        标题
+
+                        <input type="text" class="form-control" style="" name="biaoti" value="{{ request.GET.biaoti }}" />
+                    </div>
+                    <div class="form-group">
+                        物品
+
+                        <input type="text" class="form-control" style="" name="wupin" value="{{ request.GET.wupin }}" />
+                    </div>
+                    <div class="form-group">
+                        物品类别
+
+                        <select class="form-control class_wupinleibie33" data-value="{{ request.GET.wupinleibie }}" id="wupinleibie" name="wupinleibie">
+                            <option value="">请选择</option>
+                            {% sql "SELECT * FROM wupinleibie ORDER BY id desc" 'select' as select %} {% for m in select %}
+                            <option value="{{ m.id }}">{{ m.leibieming }}</option>
+                            {% endfor %}
+                        </select>
+                        <script>
+                            $(".class_wupinleibie33").val($(".class_wupinleibie33").attr("data-value"));
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        类型
+
+                        <select class="form-control class_leixing34" data-value="{{ request.GET.leixing }}" id="leixing" name="leixing">
+                            <option value="">请选择</option>
+                            <option value="回收处理">回收处理</option>
+                            <option value="退还处理">退还处理</option>
+                        </select>
+                        <script>
+                            $(".class_leixing34").val($(".class_leixing34").attr("data-value"));
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        备注信息
+
+                        <input type="text" class="form-control" id="beizhuxinxi" name="beizhuxinxi" value="{{ request.GET.beizhuxinxi }}" />
+                    </div>
+                    <select class="form-control" name="order" id="orderby">
+                        <option value="id">按发布时间</option>
+                        <option value="shuliang">按数量</option>
+                    </select>
+                    <select class="form-control" name="sort" id="sort">
+                        <option value="desc">倒序</option>
+                        <option value="asc">升序</option>
+                    </select>
+                    <script>
+                        $("#orderby").val("{{ orderby }}");
+                        $("#sort").val("{{ sort }}");
+                    </script>
+                    <button type="submit" class="btn btn-default">搜索</button>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+
+            <div class="list-table">
+                <table width="100%" border="1" class="table table-list table-bordered table-hover">
+                    <thead>
+                        <tr align="center">
+                            <th width="60" data-field="item">序号</th>
+                            <th>标题</th>
+                            <th>编号</th>
+                            <th>物品</th>
+                            <th>物品类别</th>
+                            <th>数量</th>
+                            <th>捐赠人</th>
+                            <th>类型</th>
+                            <th>备注信息</th>
+                            <th>添加人</th>
+                            <th>添加时间</th>
+                            <th width="220" data-field="handler">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for map in list %} {% with i=forloop.counter %}
+                        <tr id="{{ map.id }}" pid="">
+                            <td width="30" align="center">
+                                <label> {{ i }} </label>
+                            </td>
+                            <td>{{ map.biaoti }}</td>
+                            <td>{{ map.bianhao }}</td>
+                            <td>{{ map.wupin }}</td>
+                            <td>{{ map.wupinleibie.leibieming }}</td>
+                            <td>{{ map.shuliang }}</td>
+                            <td>{{ map.juanzengren }}</td>
+                            <td>{{ map.leixing }}</td>
+                            <td>{{ map.beizhuxinxi }}</td>
+                            <td>{{ map.tianjiaren }}</td>
+                            <td>{{ map.addtime|date:'Y-m-d H:i:s' }}</td>
+                            <td align="center">
+                                <a href="/chuli/admin/detail/?id={{ map.id }}">详情</a>
+                                <!--qiatnalijne-->
+                            </td>
+                        </tr>
+                        {% endwith %}{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "page.html" %}
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

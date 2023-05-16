@@ -1,0 +1,172 @@
+{% load utils %} {% include "head.html" %}
+<script src="/static/js/jquery.validate.js"></script>
+
+<div style="padding: 10px" class="admin-content">
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">添加需求信息:</div>
+            <div class="panel-body">
+                <form action="/xuqiuxinxi/insert/" method="post" name="form1" id="form1">
+                    <!-- form 标签开始 -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">需求编号</label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入需求编号"
+                                    style="width: 150px"
+                                    readonly="readonly"
+                                    id="xuqiubianhao"
+                                    name="xuqiubianhao"
+                                    value="{% getID %}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">标题<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入标题"
+                                    style="width: 250px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写标题"
+                                    id="biaoti"
+                                    name="biaoti"
+                                    value=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物质名称<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入物质名称"
+                                    style="width: 250px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写物质名称"
+                                    id="wuzhimingcheng"
+                                    name="wuzhimingcheng"
+                                    value=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">物质类别</label>
+                            <div class="col-sm-10">
+                                <select class="form-control class_wuzhileibie5" data-value="" id="wuzhileibie" name="wuzhileibie" style="width: 250px">
+                                    {% sql "SELECT * FROM wupinleibie ORDER BY id desc" 'select' as select %} {% for m in select %}
+                                    <option value="{{ m.id }}">{{ m.leibieming }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">数量<span style="color: red">*</span></label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入数量"
+                                    style="width: 150px"
+                                    data-rule-required="true"
+                                    data-msg-required="请填写数量"
+                                    id="shuliang"
+                                    name="shuliang"
+                                    value=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="输入姓名" style="width: 150px" id="xingming" name="xingming" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">手机号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="输入手机号" style="width: 150px" id="shoujihao" name="shoujihao" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">联系地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="输入联系地址" style="width: 150px" id="lianxidizhi" name="lianxidizhi" value="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">需求描述</label>
+                            <div class="col-sm-10">
+                                <textarea style="width: 80%; height: 120px" class="form-control" placeholder="输入需求描述" id="xuqiumiaoshu" name="xuqiumiaoshu"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs">登记人</label>
+                            <div class="col-sm-10">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="输入登记人"
+                                    style="width: 150px"
+                                    readonly="readonly"
+                                    id="dengjiren"
+                                    name="dengjiren"
+                                    value="{{ request.session.username }}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <label style="text-align: right" class="col-sm-2 hiddex-xs"> </label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="zhuangtai" id="zhuangtai" value="待审核" />
+
+                                <button type="submit" class="btn btn-primary" name="Submit">提交</button>
+                                <button type="reset" class="btn btn-default" name="Submit2">重置</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+        </div>
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+
+    <script>
+        $(function () {
+            $("#form1").validate();
+        });
+    </script>
+</div>
+{% include "foot.html" %}

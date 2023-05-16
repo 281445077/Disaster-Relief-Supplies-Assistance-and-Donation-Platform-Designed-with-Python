@@ -1,0 +1,105 @@
+{% load utils %} {% include "head.html" %}
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="module-name"> 新闻信息 </span>
+            <span>列表</span>
+        </div>
+        <div class="panel-body">
+            <div class="pa10 bg-warning">
+                <form class="form-inline" id="formSearch" action="?">
+                    <!-- form 标签开始 -->
+
+                    <div class="form-group">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <div class="form-group">
+                        标题
+
+                        <input type="text" class="form-control" style="" name="biaoti" value="{{ request.GET.biaoti }}" />
+                    </div>
+                    <div class="form-group">
+                        分类
+
+                        <select
+                            class="form-control class_fenlei1"
+                            data-value="{{ request.GET.fenlei }}"
+                            data-rule-required="true"
+                            data-msg-required="请填写分类"
+                            id="fenlei"
+                            name="fenlei"
+                        >
+                            <option value="">请选择</option>
+                            {% sql "SELECT * FROM xinwenfenlei ORDER BY id desc" 'select' as select %} {% for m in select %}
+                            <option value="{{ m.id }}">{{ m.fenleimingcheng }}</option>
+                            {% endfor %}
+                        </select>
+                        <script>
+                            $(".class_fenlei1").val($(".class_fenlei1").attr("data-value"));
+                        </script>
+                    </div>
+                    <select class="form-control" name="order" id="orderby">
+                        <option value="id">按发布时间</option>
+                        <option value="dianjilv">按点击率</option>
+                    </select>
+                    <select class="form-control" name="sort" id="sort">
+                        <option value="desc">倒序</option>
+                        <option value="asc">升序</option>
+                    </select>
+                    <script>
+                        $("#orderby").val("{{ orderby }}");
+                        $("#sort").val("{{ sort }}");
+                    </script>
+                    <button type="submit" class="btn btn-default">搜索</button>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+
+            <div class="list-table">
+                <table width="100%" border="1" class="table table-list table-bordered table-hover">
+                    <thead>
+                        <tr align="center">
+                            <th width="60" data-field="item">序号</th>
+                            <th>标题</th>
+                            <th>分类</th>
+                            <th>图片</th>
+                            <th>添加人</th>
+                            <th>点击率</th>
+                            <th>添加时间</th>
+                            <th width="220" data-field="handler">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for map in list %} {% with i=forloop.counter %}
+                        <tr id="{{ map.id }}" pid="">
+                            <td width="30" align="center">
+                                <label> {{ i }} </label>
+                            </td>
+                            <td>{{ map.biaoti }}</td>
+                            <td>{{ map.fenlei.fenleimingcheng }}</td>
+                            <td>{% if "" == map.tupian %}-{% else %}<img width="100" src="{% images map.tupian %}" />{% endif %}</td>
+                            <td>{{ map.tianjiaren }}</td>
+                            <td>{{ map.dianjilv }}</td>
+                            <td>{{ map.addtime|date:'Y-m-d H:i:s' }}</td>
+                            <td align="center">
+                                <a href="/xinwenxinxi/admin/detail/?id={{ map.id }}">详情</a>
+
+                                <a href="/xinwenxinxi/admin/updt/?id={{ map.id }}">编辑</a>
+
+                                <a href="/xinwenxinxi/delete/?id={{ map.id }}" onclick="return confirm('确定要删除？')">删除</a>
+                                <!--qiatnalijne-->
+                            </td>
+                        </tr>
+                        {% endwith %}{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "page.html" %}
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

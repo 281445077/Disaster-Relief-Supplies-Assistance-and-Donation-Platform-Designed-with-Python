@@ -1,0 +1,133 @@
+{% load utils %} {% include "head.html" %}
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="module-name"> 需求审核 </span>
+            <span>列表</span>
+        </div>
+        <div class="panel-body">
+            <div class="pa10 bg-warning">
+                <form class="form-inline" id="formSearch" action="?">
+                    <!-- form 标签开始 -->
+
+                    <div class="form-group">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </div>
+
+                    <div class="form-group">
+                        需求编号
+
+                        <input type="text" class="form-control" style="" name="xuqiubianhao" value="{{ request.GET.xuqiubianhao }}" />
+                    </div>
+                    <div class="form-group">
+                        标题
+
+                        <input type="text" class="form-control" style="" name="biaoti" value="{{ request.GET.biaoti }}" />
+                    </div>
+                    <div class="form-group">
+                        物质类别
+
+                        <select class="form-control class_wuzhileibie46" data-value="{{ request.GET.wuzhileibie }}" id="wuzhileibie" name="wuzhileibie">
+                            <option value="">请选择</option>
+                            {% sql "SELECT * FROM wupinleibie ORDER BY id desc" 'select' as select %} {% for m in select %}
+                            <option value="{{ m.id }}">{{ m.leibieming }}</option>
+                            {% endfor %}
+                        </select>
+                        <script>
+                            $(".class_wuzhileibie46").val($(".class_wuzhileibie46").attr("data-value"));
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        审核结果
+
+                        <select
+                            class="form-control class_shenhejieguo47"
+                            data-value="{{ request.GET.shenhejieguo }}"
+                            data-rule-required="true"
+                            data-msg-required="请填写审核结果"
+                            id="shenhejieguo"
+                            name="shenhejieguo"
+                        >
+                            <option value="">请选择</option>
+                            <option value="已通过">已通过</option>
+                            <option value="未通过">未通过</option>
+                        </select>
+                        <script>
+                            $(".class_shenhejieguo47").val($(".class_shenhejieguo47").attr("data-value"));
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        审核备注
+
+                        <input type="text" class="form-control" id="shenhebeizhu" name="shenhebeizhu" value="{{ request.GET.shenhebeizhu }}" />
+                    </div>
+                    <select class="form-control" name="order" id="orderby">
+                        <option value="id">按发布时间</option>
+                        <option value="shuliang">按数量</option>
+                    </select>
+                    <select class="form-control" name="sort" id="sort">
+                        <option value="desc">倒序</option>
+                        <option value="asc">升序</option>
+                    </select>
+                    <script>
+                        $("#orderby").val("{{ orderby }}");
+                        $("#sort").val("{{ sort }}");
+                    </script>
+                    <button type="submit" class="btn btn-default">搜索</button>
+
+                    <!--form标签结束-->
+                </form>
+            </div>
+
+            <div class="list-table">
+                <table width="100%" border="1" class="table table-list table-bordered table-hover">
+                    <thead>
+                        <tr align="center">
+                            <th width="60" data-field="item">序号</th>
+                            <th>需求编号</th>
+                            <th>标题</th>
+                            <th>物质名称</th>
+                            <th>物质类别</th>
+                            <th>数量</th>
+                            <th>姓名</th>
+                            <th>登记人</th>
+                            <th>审核结果</th>
+                            <th>审核备注</th>
+                            <th>审核人</th>
+                            <th>添加时间</th>
+                            <th width="220" data-field="handler">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for map in list %} {% with i=forloop.counter %}
+                        <tr id="{{ map.id }}" pid="">
+                            <td width="30" align="center">
+                                <label> {{ i }} </label>
+                            </td>
+                            <td>{{ map.xuqiubianhao }}</td>
+                            <td>{{ map.biaoti }}</td>
+                            <td>{{ map.wuzhimingcheng }}</td>
+                            <td>{{ map.wuzhileibie.leibieming }}</td>
+                            <td>{{ map.shuliang }}</td>
+                            <td>{{ map.xingming }}</td>
+                            <td>{{ map.dengjiren }}</td>
+                            <td>{{ map.shenhejieguo }}</td>
+                            <td>{{ map.shenhebeizhu }}</td>
+                            <td>{{ map.shenheren }}</td>
+                            <td>{{ map.addtime|date:'Y-m-d H:i:s' }}</td>
+                            <td align="center">
+                                <a href="/xuqiushenhe/admin/detail/?id={{ map.id }}">详情</a>
+                                <!--qiatnalijne-->
+                            </td>
+                        </tr>
+                        {% endwith %}{% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "page.html" %}
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

@@ -1,0 +1,218 @@
+{% load utils %}
+
+
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="个人中心">&#xe6a7;</i>
+        <cite>个人中心</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('修改个人资料','/yonghu/admin/updtself/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>修改个人资料</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('修改密码','/common/mod/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>修改密码</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="捐赠管理">&#xe6a7;</i>
+        <cite>捐赠管理</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('发起捐赠','/juanzeng/admin/add/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>发起捐赠</cite>
+            </a>
+        </li>
+
+        <li>
+            <a onclick="xadmin.add_tab('我的捐赠','/juanzeng/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>我的捐赠</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('审核查询','/juanzengshenhe/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>审核查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('捐寄查询','/juanji/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>捐寄查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('捐寄审核','/juanjishenhe/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>捐寄审核</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('处理查询','/chuli/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>处理查询</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="我的申领管理">&#xe6a7;</i>
+        <cite>我的申领管理</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('申领查询','/shenling/admin/shenqingyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>申领查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('审核查询','/shenlingshenhe/admin/shenqingyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>审核查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('派寄查询','/paiji/admin/shenqingyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>派寄查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('签收查询','/qianshou/admin/shenqingyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>签收查询</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="用户申领查询">&#xe6a7;</i>
+        <cite>用户申领查询</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('申领查询','/shenling/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>申领查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('审核查询','/shenlingshenhe/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>审核查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('派寄查询','/paiji/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>派寄查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('签收查询','/qianshou/admin/juanzengren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>签收查询</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="我的需求管理">&#xe6a7;</i>
+        <cite>我的需求管理</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('发起需求','/xuqiuxinxi/admin/add/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>发起需求</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('我的需求','/xuqiuxinxi/admin/dengjiren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>我的需求</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('审核查询','/xuqiushenhe/admin/dengjiren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>审核查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('捐赠查询','/juanzengwuzi/admin/dengjiren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>捐赠查询</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('领取查询','/lingqu/admin/dengjiren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>领取查询</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="我用需求管理">&#xe6a7;</i>
+        <cite>我用需求管理</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('我的捐赠','/juanzengwuzi/admin/juanzengyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>我的捐赠</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('领取查询','/lingqu/admin/juanzengyonghu/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>领取查询</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="javascript:;">
+        <i class="iconfont left-nav-li" lay-tips="信息管理">&#xe6a7;</i>
+        <cite>信息管理</cite>
+        <i class="iconfont nav_right">&#xe697;</i>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a onclick="xadmin.add_tab('我的发信','/liuyanxinxi/admin/faxinren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>我的发信</cite>
+            </a>
+        </li>
+        <li>
+            <a onclick="xadmin.add_tab('我的收信','/liuyanxinxi/admin/shouxinren/')">
+                <i class="iconfont">&#xe6a7;</i>
+                <cite>我的收信</cite>
+            </a>
+        </li>
+    </ul>
+</li>
+    

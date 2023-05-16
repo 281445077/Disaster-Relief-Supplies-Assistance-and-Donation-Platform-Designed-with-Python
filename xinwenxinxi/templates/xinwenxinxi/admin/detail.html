@@ -1,0 +1,62 @@
+{% load utils %} {% include "head.html" %}
+<link href="/static/js/h5upload/h5upload.css" rel="stylesheet" />
+<script src="/static/js/h5upload/h5upload.js"></script>
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">新闻信息详情</div>
+        <div class="panel-body">
+            <div class="admin-detail clearfix">
+                <div class="detail detail-longtext">
+                    <div class="detail-title">标题：</div>
+                    <div class="detail-content">{{ map.biaoti }}</div>
+                </div>
+                <div class="detail detail-select">
+                    <div class="detail-title">分类：</div>
+                    <div class="detail-content">{{ map.fenlei.fenleimingcheng }}</div>
+                </div>
+                <div class="detail detail-textuser">
+                    <div class="detail-title">添加人：</div>
+                    <div class="detail-content">{{ map.tianjiaren }}</div>
+                </div>
+                <div class="detail detail-number">
+                    <div class="detail-title">点击率：</div>
+                    <div class="detail-content">{{ map.dianjilv }}</div>
+                </div>
+                <div class="detail detail-autotime">
+                    <div class="detail-title">添加时间：</div>
+                    <div class="detail-content">{{ map.addtime|date:'Y-m-d H:i:s' }}</div>
+                </div>
+                <div class="detail detail-images">
+                    <div class="detail-title">图片：</div>
+                    <div class="detail-content">
+                        <fieldset class="images_box">
+                            <div id="gellay_images" class="imagesList">
+                                <script>
+                                    var images = "{{ map.tupian }}".split(",");
+                                    for (var i = 0; i < images.length; i++) {
+                                        var image = images[i];
+                                        var uploadImage = '<div class="uploadImage">' + '<span class="thumb thumbnail"><img src="' + image + '"/></span>' + "</div>";
+                                        document.writeln(uploadImage);
+                                    }
+                                </script>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="detail detail-editor">
+                    <div class="detail-title">内容：</div>
+                    <div class="detail-content">{{ map.neirong|safe }}</div>
+                </div>
+            </div>
+
+            <div class="button-list mt10">
+                <div class="">
+                    <button type="button" class="btn btn-default" onclick="history.go(-1);">返回</button>
+                    <button type="button" class="btn btn-default" onclick="window.print()">打印本页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

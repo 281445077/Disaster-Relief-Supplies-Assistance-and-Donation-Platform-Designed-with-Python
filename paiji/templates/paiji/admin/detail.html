@@ -1,0 +1,91 @@
+{% load utils %} {% include "head.html" %}
+
+<div style="padding: 10px" class="admin-content">
+    <div class="panel panel-default">
+        <div class="panel-heading">派寄详情</div>
+        <div class="panel-body">
+            <div class="admin-detail clearfix">
+                <div class="detail detail-readmodule">
+                    <div class="detail-title">申领id：</div>
+                    <div class="detail-content">{{ map.shenlingid }}</div>
+                </div>
+                <div class="detail detail-readmodule">
+                    <div class="detail-title">捐赠id：</div>
+                    <div class="detail-content">{{ map.juanzengid }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">编号：</div>
+                    <div class="detail-content">{{ map.bianhao }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">申领人姓名：</div>
+                    <div class="detail-content">{{ map.shenlingrenxingming }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">申领人电话：</div>
+                    <div class="detail-content">{{ map.shenlingrendianhua }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">申领人地址：</div>
+                    <div class="detail-content">{{ map.shenlingrendizhi }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">物流公司：</div>
+                    <div class="detail-content">{{ map.wuliugongsi }}</div>
+                </div>
+                <div class="detail detail-text">
+                    <div class="detail-title">物流单号：</div>
+                    <div class="detail-content">{{ map.wuliudanhao }}</div>
+                </div>
+                <div class="detail detail-longtext">
+                    <div class="detail-title">标题：</div>
+                    <div class="detail-content">{{ map.biaoti }}</div>
+                </div>
+                <div class="detail detail-longtext">
+                    <div class="detail-title">物品：</div>
+                    <div class="detail-content">{{ map.wupin }}</div>
+                </div>
+                <div class="detail detail-select">
+                    <div class="detail-title">物品类别：</div>
+                    <div class="detail-content">{{ map.wupinleibie.leibieming }}</div>
+                </div>
+                <div class="detail detail-select">
+                    <div class="detail-title">申领人性别：</div>
+                    <div class="detail-content">{{ map.shenlingrenxingbie }}</div>
+                </div>
+                <div class="detail detail-number">
+                    <div class="detail-title">数量：</div>
+                    <div class="detail-content">{{ map.shuliang }}</div>
+                </div>
+                <div class="detail detail-textuser">
+                    <div class="detail-title">捐赠人：</div>
+                    <div class="detail-content">{{ map.juanzengren }}</div>
+                </div>
+                <div class="detail detail-textuser">
+                    <div class="detail-title">申请用户：</div>
+                    <div class="detail-content">{{ map.shenqingyonghu }}</div>
+                </div>
+                <div class="detail detail-textuser">
+                    <div class="detail-title">操作人：</div>
+                    <div class="detail-content">{{ map.caozuoren }}</div>
+                </div>
+                <div class="detail detail-textarea">
+                    <div class="detail-title">备注：</div>
+                    <div class="detail-content">{{ map.beizhu }}</div>
+                </div>
+                <div class="detail detail-autotime">
+                    <div class="detail-title">添加时间：</div>
+                    <div class="detail-content">{{ map.addtime|date:'Y-m-d H:i:s' }}</div>
+                </div>
+            </div>
+
+            <div class="button-list mt10">
+                <div class="">
+                    <button type="button" class="btn btn-default" onclick="history.go(-1);">返回</button>
+                    <button type="button" class="btn btn-default" onclick="window.print()">打印本页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "foot.html" %}

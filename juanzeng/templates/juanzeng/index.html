@@ -1,0 +1,77 @@
+{% load utils %} {% include "head.html" %} {% include "header.html" %}
+
+<div>
+    <div class="container">
+        <!-- 使用bootstrap css框架，container定宽，并剧中 https://v3.bootcss.com/css/#overview-container -->
+
+        <div class="single-bottom">
+            <h6>捐寄信息</h6>
+            <div class="prod-desc">
+                <div class="snick clearfix">
+                    <div style="margin-bottom: 20px">
+                        <form action="?" class="search">
+                            <table class="jd-search">
+                                <tbody>
+                                    <tr>
+                                        <td class="label1">物品类别</td>
+                                        <td class="form-inline">
+                                            <p class="search-radio">
+                                                <input type="hidden" name="wupinleibie" value="{{ request.GET.wupinleibie }}" />
+                                                <a href="javascript:;" data-value="" onclick="selectRadio(this)">全部</a>
+                                                {% sql "SELECT id,leibieming FROM wupinleibie" 'select' as mapwupinleibie3 %} {% for r in mapwupinleibie3 %}
+                                                <a href="javascript:;" data-value="{{ r.id }}" onclick="selectRadio(this)">{{ r.leibieming }}</a>
+                                                {% endfor %}
+                                            </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="label1">标题</td>
+                                        <td class="form-inline">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                style="width: 150px"
+                                                name="biaoti"
+                                                value="{{ request.GET.biaoti }}"
+                                                placeholder="请输入关键词"
+                                            />
+                                            <button type="submit" class="btn btn-default">搜索</button>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="label1">物品</td>
+                                        <td class="form-inline">
+                                            <input type="text" class="form-control" style="width: 150px" name="wupin" value="{{ request.GET.wupin }}" placeholder="请输入关键词" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="row">
+                        {% for r in list %}
+                        <div class="col-md-3 snock">
+                            <a href="/juanzeng/detail/?id={{ r.id }}">
+                                <div class="services">
+                                    <div class="img-box snocks pb100">
+                                        <div class="img" style="background-image: url('{% images r.tupian %}')"></div>
+                                    </div>
+                                    <h2>{{ r.biaoti|striptags|slice:15 }}</h2>
+                                    <p>{{ r.wupin|striptags|slice:60 }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% include "page.html" %}
+                </div>
+            </div>
+        </div>
+
+        <!-- container定宽，并剧中结束 -->
+    </div>
+</div>
+
+{% include "footer.html" %} {% include "foot.html" %}
